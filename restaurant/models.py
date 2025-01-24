@@ -101,10 +101,12 @@ class Order(models.Model):
         verbose_name_plural = "سفارش ها"
     
     def calculate_total(self):
-        total = 0
-        for item in self.items.all():
-            total += item.food_item.price * item.quantity
+        total = sum(item.food_item.price * item.quantity for item in self.items.all())
         return total
+
+    # def save(self, *args, **kwargs):
+    #     self.total_price = self.calculate_total()
+    #     super().save(*args, **kwargs)
 
 
 class OrderItem(models.Model):
