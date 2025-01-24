@@ -6,6 +6,7 @@ from .forms import MenuForm, OrderForm
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 1 # -- تعداد فرم های خالی پیش فرض
+    # can_delete = True
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'food_item':
